@@ -12,7 +12,7 @@ resource "google_compute_instance_template" "okd-tpl" {
   project     = var.project_id
   description = "Template for OKD compute instances"
 
-  tags = ["okd", "openshift", "shifter"]
+  tags = ["okd", "openshift"]
 
   name_prefix  = "${var.prefix}-cluster-"
   machine_type = "e2-standard-4"
@@ -53,7 +53,7 @@ resource "google_compute_instance_from_template" "os-control-plane" {
 
   source_instance_template = google_compute_instance_template.okd-tpl.id
 
-  tags = ["okd", "os-cp", "shifter", "openshift"]
+  tags = ["okd", "os-cp", "openshift"]
 }
 
 resource "google_compute_instance_from_template" "os-data-plane" {
@@ -64,7 +64,7 @@ resource "google_compute_instance_from_template" "os-data-plane" {
 
   source_instance_template = google_compute_instance_template.okd-tpl.id
 
-  tags = ["okd", "os-dp", "shifter", "openshift"]
+  tags = ["okd", "os-dp", "openshift"]
 }
 
 resource "google_compute_instance_from_template" "os-infra-plane" {
@@ -75,7 +75,7 @@ resource "google_compute_instance_from_template" "os-infra-plane" {
 
   source_instance_template = google_compute_instance_template.okd-tpl.id
 
-  tags = ["okd", "os-cp", "shifter", "openshift"]
+  tags = ["okd", "os-cp", "openshift"]
 }
 
 resource "google_compute_instance_from_template" "os-deployer" {
@@ -88,5 +88,5 @@ resource "google_compute_instance_from_template" "os-deployer" {
 
   source_instance_template = google_compute_instance_template.okd-tpl.id
 
-  tags = ["okd", "deployer", "shifter", "openshift"]
+  tags = ["okd", "deployer", "openshift"]
 }
